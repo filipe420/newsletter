@@ -1,60 +1,43 @@
-import { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+"use client"
+import { useState } from 'react'
+import { toast, ToastContainer } from "react-toastify";
 
 export default function FormEmail() {
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
 
     async function onSubmit() {
         const myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append("Content-Type", "application/json");
+
 
         try {
-            const response = await fetch('http://localhost:3001/email/register-email', {
+            const r = await fetch('http://localhost:3001/email/register-email', {
                 method: 'POST',
                 headers: myHeaders,
                 body: JSON.stringify({
                     email,
                     name
                 }),
-            });
+            })
 
-            if (response.status !== 200 && response.status !== 201) {
-                throw new Error('Erro ao se inscrever, tente mais tarde');
+            if (r.status !== 200 && r.status !== 201) {
+                throw new Error('Erro ao se inscrever, tente novamente mais tarde!')
             }
 
-            setEmail('');
-            setName('');
+            setEmail('')
+            setName('')
 
-            toast.success('Inscrição realizada com sucesso!');
+            toast.success('Inscrição realizada com sucesso!')
         } catch (error) {
-            toast.error('Erro ao se inscrever, tente novamente mais tarde!');
+            toast.error('Erro ao se inscrever, tente novamente mais tarde!')
         }
     }
 
-    return (
-        <>
-            <ToastContainer />
-            <input 
-                value={name} 
-                onChange={(e) => setName(e.target.value)} 
-                type="text" 
-                placeholder="Digite seu nome" 
-                className="w-full p-2 rounded text-black" 
-            />
-            <input 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                type="email" 
-                placeholder="Digite seu email" 
-                className="w-full p-2 rounded text-black" 
-            />
-            <button 
-                onClick={onSubmit} 
-                className="bg-indigo-500 p-4 rounded min-w-full"
-            >
-                Inscrever
-            </button>
-        </>
-    );
+    return <>
+        <ToastContainer />
+        <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Digite seu nome" className="w-full p-2 rounded text-black" />
+        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Digite seu email" className="w-full p-2 rounded text-black" />
+        <button onClick={onSubmit} className="bg-indigo-500 p-4 rounded min-w-full">Inscrever</button>
+    </>
 }
