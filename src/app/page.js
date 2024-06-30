@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="h-[24rem] md:h-[28rem] w-full max-w-5xl bg-black rounded-lg flex flex-col md:flex-row items-center p-4 space-y-4 md:space-y-0 md:space-x-4">
+      <div className=" md:h-[28rem] w-full max-w-5xl bg-black rounded-lg flex flex-col md:flex-row items-center p-4 space-y-4 md:space-y-0 md:space-x-4">
         
         <div className="relative flex justify-center items-center bg-indigo-500 w-full md:w-1/3 min-h-[12rem] md:min-h-full rounded">
           <Image src="https://cdn-icons-png.flaticon.com/512/4939/4939994.png" alt="hero" layout="fill" objectFit="contain" className="rounded max-h-24 md:max-h-36 xl:max-h-48 mt-5 md:mt-16" />
